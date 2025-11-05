@@ -19,6 +19,78 @@
   --accent-glow: rgba(19, 240, 200, 0.3);
 }
 
+/* ===== light theme tokens (add to globals.css / theme.css) ===== */
+:root.light {
+  --background: #f9fbfd;
+  --text: #0A1A24;             /* main text (dark navy) */
+  --text-secondary: #425A6B;   /* secondary / meta text */
+  --text-muted: rgba(10,26,36,0.75); /* slightly faded but readable */
+  --heading: #06202E;          /* headings */
+  --accent: #13F0C8;           /* neon mint accent */
+  --badge-bg: rgba(19,240,200,0.15);
+  --badge-text: #007A78;
+  --card-bg: rgba(255,255,255,0.55);
+  --card-border: rgba(0,0,0,0.08);
+  --line: rgba(0,0,0,0.12);
+  --icon-muted: rgba(10,26,36,0.55);
+  --shadow: 0 8px 30px rgba(2,6,23,0.06);
+}
+/* Global utility to ensure smoother transitions */
+:root, :root.light, :root.dark {
+  --transition-default: all 300ms ease-in-out;
+}
+
+/* Frosted card default */
+.light .card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow);
+  transition: var(--transition-default);
+}
+
+/* Tag chip default */
+.tag-chip {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(0,0,0,0.03);
+  transition: var(--transition-default);
+}
+
+/* Timeline dot light mode */
+.light .timeline-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: var(--background);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 12px rgba(19,240,200,0.12);
+  transition: var(--transition-default);
+}
+
+/* Divider line in light mode */
+.light .section-divider {
+  height: 1px;
+  background: var(--line);
+  transition: var(--transition-default);
+}
+
+/* Icon defaults for light mode */
+.light .side-icon {
+  color: var(--icon-muted);
+  opacity: 1;
+  transition: var(--transition-default);
+}
+
+/* ===== end globals.css additions ===== */
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -162,4 +234,159 @@ body {
 
 .icon-bounce {
   animation: bounce-smooth 2s ease-in-out infinite;
+}
+
+/* ===== Global utility for smoother transitions ===== */
+:root, :root.light, :root.dark {
+  --transition-default: all 300ms ease-in-out;
+  --shadow: 0 8px 30px rgba(2, 6, 23, 0.06);
+  --icon-muted: rgba(10, 26, 36, 0.55);
+}
+
+.dark {
+  --shadow: 0 8px 30px rgba(8, 47, 73, 0.45);
+  --icon-muted: rgba(226, 232, 240, 0.5);
+}
+
+/* ===== Frosted card component ===== */
+.card {
+  background: var(--bg-card);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow);
+  transition: var(--transition-default);
+}
+
+.light .card {
+  background: var(--bg-card);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow);
+}
+
+.dark .card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow);
+}
+
+/* ===== Tag chip component ===== */
+.tag-chip {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  transition: var(--transition-default);
+  font-weight: 500;
+}
+
+.dark .tag-chip {
+  border: 1px solid transparent;
+}
+
+/* ===== Timeline dot for experience section ===== */
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: var(--background);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+  transition: var(--transition-default);
+  position: relative;
+}
+
+.light .timeline-dot {
+  background: var(--background);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 12px rgba(19, 240, 200, 0.15);
+}
+
+.dark .timeline-dot {
+  background: var(--accent);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 12px rgba(19, 240, 200, 0.4);
+}
+
+.timeline-dot:hover {
+  transform: scale(1.25);
+}
+
+/* ===== Section divider line ===== */
+.section-divider {
+  height: 1px;
+  background: var(--line);
+  transition: var(--transition-default);
+}
+
+.light .section-divider {
+  background: var(--line);
+  opacity: 1;
+}
+
+.dark .section-divider {
+  background: var(--line);
+  opacity: 0.8;
+}
+
+/* ===== Icon defaults for side navigation ===== */
+.side-icon {
+  color: var(--icon-muted);
+  opacity: 1;
+  transition: var(--transition-default);
+}
+
+.side-icon:hover {
+  color: var(--accent);
+  opacity: 1;
+}
+
+/* ===== Neon hover glow for accent elements ===== */
+.neon-hover {
+  transition: var(--transition-default);
+}
+
+.light .neon-hover:hover {
+  box-shadow: 0 6px 30px rgba(19, 240, 200, 0.12), 0 0 18px rgba(19, 240, 200, 0.06) inset;
+  transform: translateY(-3px);
+}
+
+.dark .neon-hover:hover {
+  box-shadow: 0 6px 30px rgba(19, 240, 200, 0.25), 0 0 20px rgba(19, 240, 200, 0.1) inset;
+  transform: translateY(-3px);
+}
+
+/* ===== Magnetic icon hover effect ===== */
+.magnetic {
+  transition: var(--transition-default);
+}
+
+.magnetic:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* ===== Timeline vertical line ===== */
+.timeline-line {
+  width: 2px;
+  background: var(--line);
+  transition: var(--transition-default);
+}
+
+.light .timeline-line {
+  background: var(--line);
+  opacity: 1;
+}
+
+.dark .timeline-line {
+  background: var(--line);
+  opacity: 0.6;
 }

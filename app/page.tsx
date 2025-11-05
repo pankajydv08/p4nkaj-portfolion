@@ -15,6 +15,8 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ParticleBackground from '../components/ParticleBackground';
+import TagChip from '../components/TagChip';
+import GlassCard from '../components/GlassCard';
 
 // The content comes verbatim from reference.tsx but adapted for Next.js app router page
 
