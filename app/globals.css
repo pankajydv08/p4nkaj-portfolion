@@ -2,14 +2,14 @@
 
 :root {
   --background: #f9fbfd;
-  --foreground: #0b1b26;
-  --text: #0b1b26;
-  --text-muted: #405a6b;
+  --foreground: #0a2536;
+  --text: #072134;
+  --text-muted: #2d4a5e;
   --bg: #f9fbfd;
   --bg-card: rgba(255, 255, 255, 0.75);
-  --badge-bg: rgba(0, 200, 200, 0.15);
-  --badge-text: #008b8b;
-  --border: rgba(0, 0, 0, 0.1);
+  --badge-bg: rgba(0, 200, 200, 0.18);
+  --badge-text: #006b6b;
+  --border: rgba(0, 0, 0, 0.12);
 }
 
 @theme inline {
@@ -26,10 +26,10 @@
     --text: #e2e8f0;
     --text-muted: #94a3b8;
     --bg: #0a192f;
-    --bg-card: rgba(17, 34, 64, 0.75);
+    --bg-card: rgba(17, 34, 64, 0.78);
     --badge-bg: rgba(19, 240, 200, 0.1);
     --badge-text: #5eead4;
-    --border: rgba(100, 255, 218, 0.1);
+    --border: rgba(100, 255, 218, 0.15);
   }
 }
 
@@ -42,14 +42,14 @@ body {
 
 .light {
   --background: #f9fbfd;
-  --foreground: #0b1b26;
-  --text: #0b1b26;
-  --text-muted: #405a6b;
+  --foreground: #0a2536;
+  --text: #072134;
+  --text-muted: #2d4a5e;
   --bg: #f9fbfd;
-  --bg-card: rgba(255, 255, 255, 0.75);
-  --badge-bg: rgba(0, 200, 200, 0.15);
-  --badge-text: #008b8b;
-  --border: rgba(0, 0, 0, 0.1);
+  --bg-card: rgba(255, 255, 255, 0.78);
+  --badge-bg: rgba(0, 200, 200, 0.18);
+  --badge-text: #006b6b;
+  --border: rgba(0, 0, 0, 0.12);
   color-scheme: light;
 }
 
