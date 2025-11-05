@@ -145,7 +145,7 @@ const NavLink = ({ href, children, onClick, isMobile = false }: { href: string; 
         }
         if (onClick) onClick();
       }}
-      className={"group relative font-mono text-sm " + (isMobile ? 'text-2xl' : '') + " text-slate-700 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-300 transition-colors duration-300"}
+      className={`group relative font-mono text-sm ${isMobile ? 'text-2xl' : ''} text-[var(--text-muted)] hover:text-teal-600 dark:hover:text-teal-300 transition-colors duration-300`}
     >
       <span className="text-teal-600 dark:text-teal-300 mr-1">.</span>
       {children}
@@ -162,11 +162,11 @@ const SectionHeading = ({ children, number }: { children: React.ReactNode; numbe
     initial="hidden"
     whileInView="visible"
     viewport={{ once: true, margin: "-100px" }}
-    className="flex items-center text-2xl md:text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 mb-12"
+    className="flex items-center text-2xl md:text-3xl font-bold tracking-tight text-[var(--text)] mb-12"
   >
     <span className="text-teal-600 dark:text-teal-300 font-mono text-xl mr-3 font-normal">{number}.</span>
     {children}
-    <div className="ml-4 h-px bg-slate-200/70 dark:bg-slate-700 flex-grow max-w-xs hidden md:block" />
+    <div className="ml-4 h-px bg-[var(--border)] flex-grow max-w-xs hidden md:block" />
   </motion.h2>
 );
 
@@ -367,17 +367,17 @@ export default function Portfolio() {
   };
 
   return (
-    <div className={"min-h-screen transition-colors duration-500 relative " + (darkMode ? 'dark' : '')}>
+    <div className={`min-h-screen transition-all duration-300 ease-out relative ${darkMode ? 'dark' : 'light'}`}>
       {/* Background layer - Clean white for light mode with subtle gradient */}
-      <div className={"fixed inset-0 -z-10 " + (darkMode ? 'bg-[#0a192f]' : 'bg-gradient-to-br from-white via-slate-50 to-teal-50/30')} />
+      <div className={`fixed inset-0 -z-10 transition-all duration-500 ${darkMode ? 'bg-[#0a192f]' : 'bg-[linear-gradient(140deg,#f9fbfd_0%,rgba(19,240,200,0.05)_35%,#e0f4ff_100%)]'}`} />
       
-      <div className="min-h-screen text-slate-900 dark:text-slate-300 font-sans selection:bg-teal-200/70 dark:selection:bg-teal-900/50 cursor-none-forced-md relative z-10">
+      <div className="min-h-screen text-[var(--text)] font-sans selection:bg-teal-200/70 dark:selection:bg-teal-900/50 cursor-none-forced-md relative z-10">
         
         <ParticleBackground />
         <CustomCursor />
 
         <header 
-          className={"fixed top-0 left-0 right-0 z-40 transition-all duration-500 " + (isScrolled ? 'py-4 bg-white/90 dark:bg-[#0a192f]/90 backdrop-blur-xl shadow-[0_12px_40px_rgba(15,23,42,0.08)] dark:shadow-slate-900/20' : 'py-6 bg-transparent')}
+          className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${isScrolled ? 'py-4 bg-white/95 dark:bg-[#0a192f]/90 backdrop-blur-xl shadow-[0_12px_40px_rgba(15,23,42,0.12)] dark:shadow-slate-900/20' : 'py-6 bg-transparent'}`}
         >
           <div className="max-w-6xl mx-auto px-6 md:px-12 flex items-center justify-between">
             <motion.a 
@@ -408,7 +408,7 @@ export default function Portfolio() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.6 }}
                 onClick={toggleDarkMode}
-                className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-700 dark:text-teal-400"
+                className="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-300 text-[var(--text-muted)] dark:text-teal-400"
                 aria-label="Toggle Dark Mode"
               >
                 {darkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -420,7 +420,7 @@ export default function Portfolio() {
                 transition={{ delay: 0.7 }}
                 href="/resume.pdf" 
                 download="Pankaj_Yadav_Resume.pdf"
-                className="px-4 py-2 text-sm font-mono text-teal-700 dark:text-teal-300 border border-teal-600 dark:border-teal-300 rounded hover:bg-teal-50 dark:hover:bg-teal-500/10 transition-colors"
+                className="px-4 py-2 text-sm font-mono text-teal-700 dark:text-teal-300 border border-teal-600 dark:border-teal-300 rounded-lg hover:bg-teal-50/70 dark:hover:bg-teal-500/10 transition-all shadow-sm"
               >
                 Resume
               </motion.a>
@@ -429,7 +429,7 @@ export default function Portfolio() {
             <div className="flex items-center gap-4 md:hidden z-50">
               <button
                 onClick={toggleDarkMode}
-                className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-700 dark:text-teal-400"
+                className="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-300 text-[var(--text-muted)] dark:text-teal-400"
               >
                 {darkMode ? <Sun size={20} /> : <Moon size={20} />}
               </button>
@@ -450,7 +450,7 @@ export default function Portfolio() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: '100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed inset-0 z-40 bg-white/95 dark:bg-[#112240] backdrop-blur-md flex flex-col items-center justify-center md:hidden shadow-2xl"
+              className="fixed inset-0 z-40 bg-white/95 dark:bg-[#112240] backdrop-blur-xl flex flex-col items-center justify-center md:hidden shadow-2xl"
             >
               <nav className="flex flex-col items-center space-y-8">
                 <NavLink isMobile href="#about" onClick={() => setMobileMenuOpen(false)}>About</NavLink>
@@ -458,7 +458,7 @@ export default function Portfolio() {
                 <NavLink isMobile href="#work" onClick={() => setMobileMenuOpen(false)}>Work</NavLink>
                 <NavLink isMobile href="#skills" onClick={() => setMobileMenuOpen(false)}>Skills</NavLink>
                 <NavLink isMobile href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</NavLink>
-                <a href="/resume.pdf" download="Pankaj_Yadav_Resume.pdf" className="mt-8 px-8 py-4 text-lg font-mono text-teal-600 border-2 border-teal-600 rounded hover:bg-teal-50 transition-colors">
+                <a href="/resume.pdf" download="Pankaj_Yadav_Resume.pdf" className="mt-8 px-8 py-4 text-lg font-mono text-teal-600 dark:text-teal-400 border-2 border-teal-600 dark:border-teal-400 rounded-lg hover:bg-teal-50/70 dark:hover:bg-teal-500/10 transition-all shadow-sm">
                   Resume
                 </a>
               </nav>
@@ -475,15 +475,15 @@ export default function Portfolio() {
               animate="visible"
               className="space-y-5 max-w-4xl"
             >
-              <motion.p variants={fadeInUp} className="text-teal-500 font-mono ml-1">Hi, my name is</motion.p>
-              <motion.h1 variants={fadeInUp} className="text-5xl md:text-8xl font-bold tracking-tight text-slate-900 dark:text-slate-200">
+              <motion.p variants={fadeInUp} className="text-teal-600 dark:text-teal-500 font-mono ml-1">Hi, my name is</motion.p>
+              <motion.h1 variants={fadeInUp} className="text-5xl md:text-8xl font-bold tracking-tight text-[var(--text)]">
                 Pankaj Yadav.
               </motion.h1>
-              <motion.h2 variants={fadeInUp} className="text-4xl md:text-7xl font-bold tracking-tight text-slate-600 dark:text-slate-400">
+              <motion.h2 variants={fadeInUp} className="text-4xl md:text-7xl font-bold tracking-tight text-[var(--text-muted)]">
                 I build things for the web.
               </motion.h2>
-              <motion.p variants={fadeInUp} className="max-w-xl text-lg text-slate-700 dark:text-slate-400 leading-relaxed pt-4">
-                I'm a software engineering student at <span className="text-teal-600 dark:text-teal-400">SRM University AP</span>, specializing in full-stack development and AI-powered solutions. Currently exploring the intersection of web technologies and artificial intelligence.
+              <motion.p variants={fadeInUp} className="max-w-xl text-lg text-[var(--text-muted)] leading-relaxed pt-4">
+                I'm a software engineering student at <span className="text-teal-600 dark:text-teal-400 font-medium">SRM University AP</span>, specializing in full-stack development and AI-powered solutions. Currently exploring the intersection of web technologies and artificial intelligence.
               </motion.p>
               
               <motion.div variants={fadeInUp} className="pt-10 flex items-center gap-6">
@@ -493,7 +493,7 @@ export default function Portfolio() {
                     e.preventDefault();
                     document.querySelector('#work')?.scrollIntoView({ behavior: 'smooth' });
                   }} 
-                  className="px-8 py-4 bg-white/80 dark:bg-transparent border-2 border-teal-600 dark:border-teal-500 text-teal-700 dark:text-teal-300 font-mono rounded-lg hover:bg-teal-50 dark:hover:bg-teal-500/10 transition-all active:scale-95 flex items-center gap-3 shadow-[0_14px_32px_rgba(13,148,136,0.12)] dark:shadow-none"
+                  className="px-8 py-4 bg-[var(--bg-card)] dark:bg-transparent border border-[var(--border)] dark:border-teal-500 text-teal-700 dark:text-teal-300 font-mono rounded-lg backdrop-blur-md hover:bg-teal-50/70 dark:hover:bg-teal-500/10 hover:border-teal-500 transition-all active:scale-95 flex items-center gap-3 shadow-[0_18px_45px_rgba(11,27,38,0.14)] dark:shadow-none"
                 >
                   Check out my work <ArrowRight size={18} />
                 </a>
@@ -509,7 +509,7 @@ export default function Portfolio() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="space-y-6 text-slate-700 dark:text-slate-400 leading-relaxed text-lg"
+                className="space-y-6 text-[var(--text-muted)] leading-relaxed text-lg"
               >
                 <p>
                   Hello! I'm Pankaj, a Computer Science Engineering student at SRM University AP with a passion for building impactful web applications. My journey in software development started with curiosity about how websites work, and it quickly evolved into building full-stack solutions that solve real-world problems.
@@ -552,7 +552,7 @@ export default function Portfolio() {
                 
                 {/* Main image container with floating animation */}
                 <motion.div 
-                  className="aspect-square rounded-2xl bg-white/80 border border-slate-200 shadow-[0_18px_50px_rgba(15,23,42,0.08)] relative z-10 overflow-hidden transition-all duration-300 grayscale hover:grayscale-0"
+                  className="aspect-square rounded-2xl bg-[var(--bg-card)] dark:bg-[#0f2548] border border-[var(--border)] dark:border-teal-500/20 shadow-[0_18px_50px_rgba(11,27,38,0.12)] dark:shadow-[0_20px_60px_rgba(8,47,73,0.45)] backdrop-blur-xl relative z-10 overflow-hidden transition-all duration-300 grayscale hover:grayscale-0"
                   animate={{
                     y: [0, -10, 0]
                   }}
@@ -572,17 +572,17 @@ export default function Portfolio() {
                     alt="Pankaj Yadav"
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-teal-100/40 via-transparent to-transparent group-hover:bg-transparent transition-all duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-teal-100/20 via-transparent to-transparent dark:from-teal-500/10 group-hover:bg-transparent transition-all duration-300" />
                   
                   {/* Shine effect on hover */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent dark:via-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
                   />
                 </motion.div>
                 
                 {/* Animated border with rotation */}
                 <motion.div 
-                  className="absolute inset-0 border-2 border-teal-200 rounded-2xl translate-x-4 translate-y-4 z-0"
+                  className="absolute inset-0 border-2 border-teal-200/70 dark:border-teal-500/20 rounded-2xl translate-x-4 translate-y-4 z-0"
                   animate={{
                     y: [0, -8, 0]
                   }}
@@ -607,27 +607,27 @@ export default function Portfolio() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="mb-12 relative pl-8 border-l-2 border-slate-200/80 dark:border-slate-700 last:mb-0 group"
+                  className="mb-12 relative pl-8 border-l-2 border-[var(--border)] last:mb-0 group"
                 >
                   {/* Timeline dot */}
-                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-teal-600 dark:bg-teal-500 border-4 border-white dark:border-[#0a192f] group-hover:scale-125 transition-transform shadow-[0_2px_10px_rgba(13,148,136,0.3)]" />
+                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-teal-600 dark:bg-teal-500 border-4 border-[var(--bg)] group-hover:scale-125 transition-transform shadow-[0_2px_10px_rgba(13,148,136,0.3)]" />
                   
                   <div className="space-y-3">
                     <div>
-                      <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">
+                      <h3 className="text-xl font-bold text-[var(--text)]">
                         {experience.role}
                       </h3>
                       <p className="text-teal-600 dark:text-teal-400 font-mono text-base font-medium">
                         {experience.company}
                       </p>
-                      <p className="text-sm text-slate-600 dark:text-slate-400 font-mono mt-1">
+                      <p className="text-sm text-[var(--text-muted)] font-mono mt-1">
                         {experience.period}
                       </p>
                     </div>
                     
                     <ul className="space-y-2">
                       {experience.description.map((item, i) => (
-                        <li key={i} className="flex items-start gap-3 text-slate-700 dark:text-slate-400">
+                        <li key={i} className="flex items-start gap-3 text-[var(--text-muted)]">
                           <span className="text-teal-600 dark:text-teal-400 mt-1 flex-shrink-0">▹</span>
                           <span>{item}</span>
                         </li>
@@ -638,7 +638,7 @@ export default function Portfolio() {
                       {experience.technologies.map((tech) => (
                         <span 
                           key={tech}
-                          className="px-3 py-1 text-xs font-mono bg-teal-50 dark:bg-teal-500/10 text-teal-700 dark:text-teal-300 rounded-full border border-teal-100 dark:border-transparent"
+                          className="px-3 py-1 text-xs font-mono bg-[var(--badge-bg)] text-[var(--badge-text)] rounded-full border border-teal-200/60 dark:border-transparent shadow-sm"
                         >
                           {tech}
                         </span>
@@ -663,8 +663,8 @@ export default function Portfolio() {
                   className={"grid grid-cols-12 gap-4 items-center " + (index % 2 === 1 ? 'md:text-right' : '')}
                 >
                   <div className={"col-span-12 md:col-span-7 relative h-[300px] md:h-[360px] " + (index % 2 === 1 ? 'md:col-start-6 row-start-1' : 'md:col-start-1 row-start-1')}>
-                     <a href={project.link} target="_blank" rel="noreferrer" className="w-full h-full block group relative rounded-2xl overflow-hidden border border-teal-100 bg-gradient-to-br from-white via-teal-50/70 to-cyan-50/70 shadow-[0_25px_80px_rgba(13,148,136,0.18)]">
-                        <div className="absolute inset-0 flex items-center justify-center bg-white/70 dark:bg-[#112240] group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0 mix-blend-normal dark:mix-blend-luminosity">
+                     <a href={project.link} target="_blank" rel="noreferrer" className="w-full h-full block group relative rounded-2xl overflow-hidden border border-[var(--border)] dark:border-teal-500/20 bg-[var(--bg-card)] dark:bg-gradient-to-br dark:from-[#0f2548] dark:via-[#112240] dark:to-[#0d1f3a] backdrop-blur-md shadow-[0_28px_80px_rgba(11,27,38,0.15)] dark:shadow-[0_30px_90px_rgba(8,47,73,0.5)]">
+                        <div className="absolute inset-0 flex items-center justify-center bg-white/35 dark:bg-[#112240] group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0 mix-blend-normal dark:mix-blend-luminosity">
                           {project.id === 1 ? (
                             // AI Tutor MVP - Brain/Robot icon with float animation
                             <div className="icon-float icon-pulse">
@@ -686,34 +686,34 @@ export default function Portfolio() {
                               <i className="fas fa-seedling text-[140px] text-teal-500"></i>
                             </div>
                           ) : (
-                            <div className="w-20 h-20 border-2 border-slate-400 dark:border-slate-600 border-dashed rounded-full" />
+                            <div className="w-20 h-20 border-2 border-[var(--border)] dark:border-teal-500/30 border-dashed rounded-full" />
                           )}
                         </div>
-                        <div className="absolute inset-0 bg-gradient-to-tr from-teal-100/40 via-transparent to-teal-200/20 dark:from-teal-900/30 dark:via-transparent dark:to-teal-500/20 group-hover:opacity-0 transition-opacity duration-300" />
+                        <div className="absolute inset-0 bg-gradient-to-tr from-teal-100/15 via-transparent to-teal-200/10 dark:from-teal-900/30 dark:via-transparent dark:to-teal-500/20 group-hover:opacity-0 transition-opacity duration-300" />
                      </a>
                   </div>
 
                   <div className={"col-span-12 md:col-span-6 relative pointer-events-none md:pointer-events-auto z-10 " + (index % 2 === 1 ? 'md:col-start-1 row-start-1' : 'md:col-start-7 row-start-1')}>
                     <p className="font-mono text-teal-600 dark:text-teal-400 text-sm mb-2">Featured Project</p>
                     <h3 className="text-2xl font-bold mb-4">
-                      <a href={project.link} target="_blank" rel="noreferrer" className="hover:text-teal-600 dark:hover:text-teal-300 transition-colors text-slate-900 dark:text-slate-100">
+                      <a href={project.link} target="_blank" rel="noreferrer" className="hover:text-teal-600 dark:hover:text-teal-300 transition-colors text-[var(--text)]">
                         {project.title}
                       </a>
                     </h3>
 
-                    <div className="bg-white/85 dark:bg-[#112240] p-6 rounded-2xl border border-slate-200/80 dark:border-transparent shadow-[0_24px_60px_rgba(15,23,42,0.12)] dark:shadow-xl text-slate-700 dark:text-slate-400 text-sm md:text-base mb-4 transition-shadow hover:shadow-[0_28px_70px_rgba(15,23,42,0.16)]">
+                    <div className="bg-[var(--bg-card)] dark:bg-[#112240] p-6 rounded-2xl border border-[var(--border)] dark:border-transparent backdrop-blur-md shadow-[0_24px_60px_rgba(11,27,38,0.15)] dark:shadow-xl text-[var(--text-muted)] text-sm md:text-base mb-4 transition-shadow hover:shadow-[0_28px_70px_rgba(11,27,38,0.2)]">
                       {project.description}
                     </div>
 
-                    <ul className={"flex flex-wrap gap-x-4 gap-y-2 font-mono text-sm text-slate-600 dark:text-slate-400 mb-8 " + (index % 2 === 1 ? 'md:justify-end' : '')}>
-                      {project.tags.map(tag => <li key={tag} className="px-2 py-1 rounded bg-teal-50 text-teal-700 dark:bg-teal-500/10 dark:text-teal-300">{tag}</li>)}
+                    <ul className={"flex flex-wrap gap-x-4 gap-y-2 font-mono text-sm mb-8 " + (index % 2 === 1 ? 'md:justify-end' : '')}>
+                      {project.tags.map(tag => <li key={tag} className="px-2 py-1 rounded bg-[var(--badge-bg)] text-[var(--badge-text)] border border-teal-200/60 dark:border-transparent shadow-sm">{tag}</li>)}
                     </ul>
 
                     <div className={"flex items-center gap-4 " + (index % 2 === 1 ? 'md:justify-end' : '')}>
-                      <a href={project.github} target="_blank" rel="noreferrer" className="text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-300 transition-colors">
+                      <a href={project.github} target="_blank" rel="noreferrer" className="text-[var(--text-muted)] hover:text-teal-600 dark:hover:text-teal-300 transition-colors">
                         <Github size={22} />
                       </a>
-                      <a href={project.link} target="_blank" rel="noreferrer" className="text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-300 transition-colors">
+                      <a href={project.link} target="_blank" rel="noreferrer" className="text-[var(--text-muted)] hover:text-teal-600 dark:hover:text-teal-300 transition-colors">
                         <ExternalLink size={22} />
                       </a>
                     </div>
@@ -735,12 +735,12 @@ export default function Portfolio() {
                     viewport={{ once: true }}
                     transition={{ delay: catIndex * 0.2, duration: 0.5 }}
                   >
-                    <h4 className="text-lg font-bold mb-6 text-slate-900 dark:text-slate-100 flex items-center justify-center sm:justify-start gap-2">
+                    <h4 className="text-lg font-bold mb-6 text-[var(--text)] flex items-center justify-center sm:justify-start gap-2">
                       <span className="text-teal-600 dark:text-teal-400">//</span> {category}
                     </h4>
                     <ul className="space-y-2.5 font-mono text-sm">
                       {items.map(skill => (
-                        <li key={skill} className="text-slate-700 dark:text-slate-400">
+                        <li key={skill} className="text-[var(--text-muted)]">
                           {skill}
                         </li>
                       ))}
@@ -758,15 +758,15 @@ export default function Portfolio() {
                   transition={{ duration: 0.5 }}
                   >
                   <p className="text-teal-600 dark:text-teal-400 font-mono mb-4">05. What's Next?</p>
-                  <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-6">Get In Touch</h2>
-                  <p className="text-slate-700 dark:text-slate-400 mb-12 leading-relaxed">
+                  <h2 className="text-4xl md:text-5xl font-bold text-[var(--text)] mb-6">Get In Touch</h2>
+                  <p className="text-[var(--text-muted)] mb-12 leading-relaxed">
                   Although I'm not currently looking for any new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!
                   </p>
 
                   {formStatus === 'success' ? (
                   <motion.div
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                  className="p-4 bg-teal-50 dark:bg-teal-500/10 text-teal-700 dark:text-teal-300 rounded-xl border border-teal-200 dark:border-teal-500/20 font-mono text-sm"
+                  className="p-4 bg-[var(--badge-bg)] text-[var(--badge-text)] rounded-xl border border-teal-300 dark:border-teal-500/20 font-mono text-sm"
                   >
                   Message sent successfully!
                   </motion.div>
@@ -776,24 +776,24 @@ export default function Portfolio() {
                      <input
                        type="text" placeholder="Name" required
                        value={formState.name} onChange={e => setFormState({...formState, name: e.target.value})}
-                       className="w-full p-3 bg-white dark:bg-[#112240] rounded-lg border border-slate-200 dark:border-transparent focus:border-teal-500 outline-none transition-all text-slate-900 dark:text-slate-100 shadow-sm focus:shadow-md"
+                       className="w-full p-3 bg-[var(--bg-card)] dark:bg-[#112240] backdrop-blur-md rounded-lg border border-[var(--border)] dark:border-transparent focus:border-teal-500 outline-none transition-all text-[var(--text)] shadow-sm focus:shadow-lg"
                      />
                      <input
                        type="email" placeholder="Email" required
                        value={formState.email} onChange={e => setFormState({...formState, email: e.target.value})}
-                       className="w-full p-3 bg-white dark:bg-[#112240] rounded-lg border border-slate-200 dark:border-transparent focus:border-teal-500 outline-none transition-all text-slate-900 dark:text-slate-100 shadow-sm focus:shadow-md"
+                       className="w-full p-3 bg-[var(--bg-card)] dark:bg-[#112240] backdrop-blur-md rounded-lg border border-[var(--border)] dark:border-transparent focus:border-teal-500 outline-none transition-all text-[var(--text)] shadow-sm focus:shadow-lg"
                      />
                    </div>
                    <textarea
                      placeholder="Message" rows={4} required
                      value={formState.message} onChange={e => setFormState({...formState, message: e.target.value})}
-                     className="w-full p-3 bg-white dark:bg-[#112240] rounded-lg border border-slate-200 dark:border-transparent focus:border-teal-500 outline-none transition-all resize-none text-slate-900 dark:text-slate-100 shadow-sm focus:shadow-md"
+                     className="w-full p-3 bg-[var(--bg-card)] dark:bg-[#112240] backdrop-blur-md rounded-lg border border-[var(--border)] dark:border-transparent focus:border-teal-500 outline-none transition-all resize-none text-[var(--text)] shadow-sm focus:shadow-lg"
                    />
                    <div className="text-center mt-8">
                      <button
                        type="submit"
                        disabled={formStatus === 'submitting'}
-                       className="px-8 py-4 bg-white dark:bg-transparent border-2 border-teal-600 dark:border-teal-500 text-teal-700 dark:text-teal-300 font-mono rounded-lg hover:bg-teal-50 dark:hover:bg-teal-500/10 transition-all active:scale-95 disabled:opacity-50 shadow-[0_12px_40px_rgba(13,148,136,0.15)] dark:shadow-none"
+                       className="px-8 py-4 bg-[var(--bg-card)] dark:bg-transparent border border-[var(--border)] dark:border-teal-500 text-teal-700 dark:text-teal-300 font-mono rounded-lg backdrop-blur-md hover:bg-teal-50/70 dark:hover:bg-teal-500/10 hover:border-teal-500 transition-all active:scale-95 disabled:opacity-50 shadow-[0_18px_45px_rgba(11,27,38,0.14)] dark:shadow-none"
                      >
                        {formStatus === 'submitting' ? 'Sending...' : 'Say Hello'}
                      </button>
@@ -807,16 +807,16 @@ export default function Portfolio() {
 
         <footer className="py-8 text-center space-y-6 md:space-y-0">
           <div className="flex justify-center gap-8 md:hidden relative z-20">
-            <a href="https://github.com/pankajydv07" target="_blank" rel="noreferrer" className="text-slate-600 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-300"><Github size={20} /></a>
-            <a href="https://www.linkedin.com/in/pankaj-yadav-67b26a291/" target="_blank" rel="noreferrer" className="text-slate-600 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-300"><Linkedin size={20} /></a>
-            <a href="mailto:pankajyadsv08@gmail.com" className="text-slate-600 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-300"><Mail size={20} /></a>
+            <a href="https://github.com/pankajydv07" target="_blank" rel="noreferrer" className="text-[var(--text-muted)] hover:text-teal-600 dark:hover:text-teal-300"><Github size={20} /></a>
+            <a href="https://www.linkedin.com/in/pankaj-yadav-67b26a291/" target="_blank" rel="noreferrer" className="text-[var(--text-muted)] hover:text-teal-600 dark:hover:text-teal-300"><Linkedin size={20} /></a>
+            <a href="mailto:pankajyadsv08@gmail.com" className="text-[var(--text-muted)] hover:text-teal-600 dark:hover:text-teal-300"><Mail size={20} /></a>
           </div>
           
           <a 
             href="https://github.com/pankajydv07" 
             target="_blank" 
             rel="noreferrer" 
-            className="font-mono text-xs text-slate-600 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-300 transition-colors block pb-8"
+            className="font-mono text-xs text-[var(--text-muted)] hover:text-teal-600 dark:hover:text-teal-300 transition-colors block pb-8"
           >
             Designed & Built by Pankaj Yadav
           </a>
@@ -825,7 +825,7 @@ export default function Portfolio() {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }}
             className="hidden md:block fixed bottom-0 left-12 w-10 z-20"
           >
-            <div className="flex flex-col items-center gap-6 text-slate-600 dark:text-slate-400 after:content-[''] after:w-px after:h-24 after:bg-slate-300 dark:after:bg-slate-600 after:block after:mx-auto">
+            <div className="flex flex-col items-center gap-6 text-[var(--text-muted)] after:content-[''] after:w-px after:h-24 after:bg-[var(--border)] after:block after:mx-auto">
                <a href="https://github.com/pankajydv07" target="_blank" rel="noreferrer" className="hover:text-teal-600 dark:hover:text-teal-300 hover:-translate-y-1 transition-all p-2"><Github size={20} /></a>
                <a href="https://www.linkedin.com/in/pankaj-yadav-67b26a291/" target="_blank" rel="noreferrer" className="hover:text-teal-600 dark:hover:text-teal-300 hover:-translate-y-1 transition-all p-2"><Linkedin size={20} /></a>
                <a href="mailto:pankajyadsv08@gmail.com" className="hover:text-teal-600 dark:hover:text-teal-300 hover:-translate-y-1 transition-all p-2"><Mail size={20} /></a>
@@ -836,7 +836,7 @@ export default function Portfolio() {
              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.7 }}
              className="hidden md:block fixed bottom-0 right-12 w-10 z-20"
           >
-             <div className="flex flex-col items-center gap-6 text-slate-600 dark:text-slate-400 after:content-[''] after:w-px after:h-24 after:bg-slate-300 dark:after:bg-slate-600 after:block after:mx-auto">
+             <div className="flex flex-col items-center gap-6 text-[var(--text-muted)] after:content-[''] after:w-px after:h-24 after:bg-[var(--border)] after:block after:mx-auto">
                 <a 
                   href="mailto:pankajyadsv08@gmail.com" 
                   className="font-mono text-sm tracking-widest hover:text-teal-600 dark:hover:text-teal-300 hover:-translate-y-1 transition-all p-2 py-6 writing-vertical-rl"
@@ -927,7 +927,7 @@ export default function Portfolio() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2 }}
             onClick={() => setShowTerminal(true)}
-            className="fixed bottom-6 left-6 z-50 px-3 py-2 bg-white/90 dark:bg-slate-800/80 backdrop-blur-sm text-slate-700 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 rounded-lg text-xs font-mono border border-slate-200 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-500 transition-all shadow-[0_8px_30px_rgba(15,23,42,0.12)] dark:shadow-lg hover:shadow-[0_12px_40px_rgba(13,148,136,0.2)] flex items-center gap-2"
+            className="fixed bottom-6 left-6 z-50 px-3 py-2 bg-[var(--bg-card)] dark:bg-slate-800/80 backdrop-blur-md text-[var(--text-muted)] hover:text-teal-600 dark:hover:text-teal-400 rounded-lg text-xs font-mono border border-[var(--border)] dark:border-slate-700 hover:border-teal-500 transition-all shadow-[0_10px_35px_rgba(11,27,38,0.14)] dark:shadow-lg hover:shadow-[0_14px_45px_rgba(13,148,136,0.25)] flex items-center gap-2"
             title="Open Terminal (Press `)"
           >
             <span className="text-teal-600 dark:text-teal-400">$</span> terminal

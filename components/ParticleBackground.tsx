@@ -15,12 +15,16 @@ const ParticleBackground = () => {
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    
+    // Detect dark mode
+    const isDarkMode = () => {
+      return Boolean(canvas.closest('.dark'));
+    };
 
     interface Particle {
       x: number;
       y: number;
       radius: number;
-      color: string;
       speedX: number;
       speedY: number;
       baseX: number;
@@ -39,7 +43,6 @@ const ParticleBackground = () => {
         baseX: x,
         baseY: y,
         radius: Math.random() * 3 + 1, // Increased size
-        color: '#14b8a6',
         speedX: Math.random() * 1 - 0.5, // Faster movement
         speedY: Math.random() * 1 - 0.5
       });
@@ -53,18 +56,24 @@ const ParticleBackground = () => {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const darkMode = isDarkMode();
+      
+      // Use different colors based on mode
+      const particleColor = darkMode ? '#14b8a6' : 'rgba(13,148,136,0.7)';
+      const glowColor = darkMode ? '#14b8a6' : 'rgba(13,148,136,0.4)';
+      const particleOpacity = darkMode ? 0.5 : 0.35;
 
       for (let i = 0; i < particleCount; i++) {
         const p = particles[i];
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = 0.5; // Increased opacity from 0.5
+        ctx.fillStyle = particleColor;
+        ctx.globalAlpha = particleOpacity;
         ctx.fill();
         
         // Add glow effect
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = '#14b8a6';
+        ctx.shadowBlur = darkMode ? 10 : 6;
+        ctx.shadowColor = glowColor;
 
         // Draw connections
         for (let j = i; j < particleCount; j++) {
@@ -78,13 +87,15 @@ const ParticleBackground = () => {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(20, 184, 166, ${0.3 - distance/600})`; // More visible lines
+            const lineOpacity = Math.max(0, darkMode ? (0.3 - distance / 600) : (0.22 - distance / 700));
+            ctx.strokeStyle = `rgba(13, 148, 136, ${lineOpacity})`; // More visible lines
             ctx.lineWidth = 1; // Thicker lines
             ctx.stroke();
           }
         }
         
         ctx.shadowBlur = 0; // Reset shadow
+        ctx.globalAlpha = 1;
 
         // Move particles
         p.x += p.speedX;
