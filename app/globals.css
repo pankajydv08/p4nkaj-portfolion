@@ -2,14 +2,14 @@
 
 :root {
   --background: #f9fbfd;
-  --foreground: #0a2536;
-  --text: #072134;
-  --text-muted: #2d4a5e;
+  --foreground: #0f172a;
+  --text: #0f172a;
+  --text-muted: #334155;
   --bg: #f9fbfd;
-  --bg-card: rgba(255, 255, 255, 0.75);
-  --badge-bg: rgba(0, 200, 200, 0.18);
-  --badge-text: #006b6b;
-  --border: rgba(0, 0, 0, 0.12);
+  --bg-card: rgba(255, 255, 255, 0.80);
+  --badge-bg: rgba(0, 200, 200, 0.20);
+  --badge-text: #005555;
+  --border: rgba(0, 0, 0, 0.15);
 }
 
 @theme inline {
@@ -42,14 +42,14 @@ body {
 
 .light {
   --background: #f9fbfd;
-  --foreground: #0a2536;
-  --text: #072134;
-  --text-muted: #2d4a5e;
+  --foreground: #0f172a;
+  --text: #0f172a;
+  --text-muted: #334155;
   --bg: #f9fbfd;
-  --bg-card: rgba(255, 255, 255, 0.78);
-  --badge-bg: rgba(0, 200, 200, 0.18);
-  --badge-text: #006b6b;
-  --border: rgba(0, 0, 0, 0.12);
+  --bg-card: rgba(255, 255, 255, 0.80);
+  --badge-bg: rgba(0, 200, 200, 0.20);
+  --badge-text: #005555;
+  --border: rgba(0, 0, 0, 0.15);
   color-scheme: light;
 }
 
